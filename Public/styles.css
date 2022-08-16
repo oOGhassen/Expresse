@@ -1,0 +1,13 @@
+body{
+    background-color: blueviolet;
+}
+.cont h1{
+    display: flex;
+    color:greenyellow;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.nvbr ul{
+        display: flex;
+        justify-content: space-around;
+}
