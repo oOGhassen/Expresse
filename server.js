@@ -1,15 +1,21 @@
 const express=require('express');
-const app=express();
-const path=require("path");
-const PORT=process.env.PORT||3000;
+const app = express();
+const path=require('path');
+const { nextTick } = require('process');
+const PORT = 3000 ;
+app.use(date=(req,res,next)=>{
 
-//app.get("",(req,res)=>res.send("<h1>Hello_School!!</h1>"))
-// app.get("/",(req,res)=>res.sendFile(path.join(__dirname,"Public","index.html")))
-// app.get("/about",(req,res)=>res.sendFile(path.join(__dirname,"Public","about.html")))
-// app.use('Navbar' , './Public')
-// app.set('view engine', 'ejs')
-
-app.use(express.static(path.join(__dirname,"public")))
-app.listen(PORT,err=>err?console.log(err)
-:console.log(`Server is running on port ${3000}!!`)
-);
+    var objDate = new Date();
+    var hours = objDate.getHours();
+    var day =objDate.getDay();
+    if((hours >= 17 && hours <= 9)&&(day==0 || day==6)){
+        res.send('We Are Closed');
+    }
+    else{
+        next()
+        
+    }
+})
+app.use(express.static(path.join(__dirname,'public')));
+app.listen(PORT,(err)=>
+err? console.log(err):console.log(`service is runing on port ${PORT}`));
